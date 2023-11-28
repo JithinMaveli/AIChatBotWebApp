@@ -36,10 +36,10 @@ app.post("/", async (request, response) => {
 
     var completion;
     await openai.chat.completions.create({
-        messages: [{ "role": "user", "content": chats.chats }],
+        messages: [{ "role": "user", "content": chats.content }],
         model: "gpt-3.5-turbo",
     }).then((result) => {
-        console.log(result.choices);
+        //console.log(result.choices);
         completion = result.choices;
     }).catch((error) => {
         console.log(error);

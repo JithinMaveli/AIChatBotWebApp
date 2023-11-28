@@ -33412,7 +33412,7 @@ var Hello = /** @class */ (function (_super) {
     Hello.prototype.render = function () {
         var _this = this;
         //const [chats, setChats] = React.useState([]);
-        var chats = "What is .net ?";
+        var chats = "What is IT ?";
         var msg;
         var fetchData = function () { return __awaiter(_this, void 0, void 0, function () {
             var response, _a;
@@ -33427,7 +33427,7 @@ var Hello = /** @class */ (function (_super) {
                                     "Content-Type": "application/json"
                                 },
                                 body: JSON.stringify({
-                                    chats: chats
+                                    content: chats
                                 })
                             }).then(function (response) { return response.json(); })
                                 .then(function (data) {
@@ -33444,7 +33444,7 @@ var Hello = /** @class */ (function (_super) {
                 }
             });
         }); };
-        fetchData();
+        //fetchData();
         //fetch("home", {
         //    method: "post",
         //    headers: {
