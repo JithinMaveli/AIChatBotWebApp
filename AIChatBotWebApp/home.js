@@ -3,6 +3,8 @@ import express from 'express';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import path from 'node:path';
+import cors from 'cors';
+import bodyParser from "body-parser";
 
 import OpenAI from "openai";
 import readline from 'readline';
@@ -12,45 +14,57 @@ var app = express();
 var staticPath = path.join(__dirname, '/');
 
 app.use(express.static(staticPath));
-// Allows you to set port in the project properties.
 app.set('port', process.env.PORT || 3000);
+
+app.use(bodyParser.json());
+app.use(cors());
 
 var server = app.listen(app.get('port'), function () {
     console.log('listening to home');
 });
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY // Getting key from local system environment variables
-});
+app.post("/", async (request, response) => {
+    //const { chats } = request.body.chats;
 
-// async function main() {
-//   const completion = await openai.chat.completions.create({
-//     messages: [{"role": "system", "content": "You are a helpful assistant."},
-//         {"role": "user", "content": "Who won the world series in 2020?"},
-//         {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
-//         {"role": "user", "content": "Where was it played?"}],
-//     model: "gpt-3.5-turbo",
-//   });
+    var chats = request.body;
 
-// console.log(completion);
-// console.log(completion.choices);
-// console.log(completion.choices[0]);
+    console.log("inside api");
 
-const commandInterface = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+    const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY // Getting key from local system environment variables
+    });
+
+    const completion = await openai.chat.completions.create({
+        messages: [{ "role": "user", "content": "Hello" }],
+        model: "gpt-3.5-turbo",
+    });
+
+    response.json({
+        output: "Hello3"
+    })
 });
 
 async function main() {
+    const commandInterface = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY // Getting key from local system environment variables
+    });
+
     commandInterface.on('line', async (input) => {
         await openai.chat.completions.create({
             messages: [{ "role": "user", "content": input }],
             model: "gpt-3.5-turbo",
         }).then((result) => {
+            //console.log("H1");
             console.log(result.choices);
             commandInterface.prompt();
         }).catch((error) => {
             console.log(error);
+            //console.log("H2");
         });
     });
 }
