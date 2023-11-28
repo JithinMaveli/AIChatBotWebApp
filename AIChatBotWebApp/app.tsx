@@ -6,7 +6,7 @@ var ReactDOM = require('react-dom');
 export class Hello extends React.Component {
     render() {
         //const [chats, setChats] = React.useState([]);
-        const chats = "Is this Chatbot ?";
+        const chats = "What is .net ?";
         var msg;
 
         const fetchData = async () => {
@@ -20,7 +20,7 @@ export class Hello extends React.Component {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        "chats": chats
+                        chats
                     })
                 }).then((response) => response.json())
                     .then((data) => {

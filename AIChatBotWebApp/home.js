@@ -34,13 +34,19 @@ app.post("/", async (request, response) => {
         apiKey: process.env.OPENAI_API_KEY // Getting key from local system environment variables
     });
 
-    const completion = await openai.chat.completions.create({
-        messages: [{ "role": "user", "content": "Hello" }],
+    var completion;
+    await openai.chat.completions.create({
+        messages: [{ "role": "user", "content": chats.chats }],
         model: "gpt-3.5-turbo",
+    }).then((result) => {
+        console.log(result.choices);
+        completion = result.choices;
+    }).catch((error) => {
+        console.log(error);
     });
 
     response.json({
-        output: "Hello3"
+        output: completion[0].message.content
     })
 });
 
@@ -69,4 +75,4 @@ async function main() {
     });
 }
 
-main();
+//main();
