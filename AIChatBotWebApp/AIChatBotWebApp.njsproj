@@ -33,6 +33,9 @@
   <ItemGroup>
     <Content Include="dist\app-bundle.js" />
     <Content Include="dist\app-bundle.js.map" />
+    <Content Include="embedding.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="home.js" />
     <Content Include="index.html">
       <SubType>Code</SubType>

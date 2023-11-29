@@ -52,8 +52,8 @@ export class Hello extends React.Component {
             <div>
                 <h1>Welcome to React!!!</h1>
                 <h2>First ChatBox AI application!!</h2>
-                <div>{chats}</div>
-                <div>{msg}</div>
+                {/*<div>{chats}</div>*/}
+                {/*<div>{msg}</div>*/}
             </div>
         );
     }

@@ -33459,9 +33459,7 @@ var Hello = /** @class */ (function (_super) {
         //    })
         return (React.createElement("div", null,
             React.createElement("h1", null, "Welcome to React!!!"),
-            React.createElement("h2", null, "First ChatBox AI application!!"),
-            React.createElement("div", null, chats),
-            React.createElement("div", null, msg)));
+            React.createElement("h2", null, "First ChatBox AI application!!")));
     };
     return Hello;
 }(React.Component));
